@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="fits_registrasi_material_tree">
+      <field name="name">fits.registrasi.material.tree</field>
+      <field name="model">registrasi.product</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="code"/>
+          <field name="name"/>
+          <field name="material_type"/>
+          <field name="buy_price"/>
+          <field name="supplier_id"/>
+        </tree>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="fits_registrasi_material_form">
+      <field name="name">fits.registrasi.material.form</field>
+      <field name="model">registrasi.product</field>
+      <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="material_type"/>
+                        <field name="buy_price"/>
+                        <field name="supplier_id"/>
+                    </group>
+                    <group>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="register_product_view_search" model="ir.ui.view">
+            <field name="name">register.product.select</field>
+            <field name="model">registrasi.product</field>
+            <field name="arch" type="xml">
+                <search string="Search Register Product">
+                    <field name="material_type"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Material Type" name="material_type" domain="[]" context="{'group_by': 'material_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="action_registrasi">
+      <field name="name">Registrasi Product</field>
+      <field name="res_model">registrasi.product</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+    <menuitem name="Registrasi Product" id="menu_registrasi_product" action="action_registrasi" parent="purchase.menu_purchase_products" sequence="30"/>
+
+  </data>
+</odoo>
